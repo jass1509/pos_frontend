@@ -58,6 +58,7 @@ export default function SalesHistory() {
                     <td className="num mono">{money(s.total)}</td>
                     <td><span className={`badge ${s.status === 'VOIDED' ? 'bad' : 'ok'}`}>{s.status === 'VOIDED' ? 'Anulada' : 'Completada'}</span></td>
                     <td className="actions">
+                      <button className="ghost" onClick={() => printReceipt(s)}>Comprobante</button>
                       <button className="ghost" onClick={() => setExpanded(expanded === s.id ? null : s.id)}>
                         {expanded === s.id ? 'Ocultar' : 'Ver detalle'}
                       </button>

@@ -152,3 +152,6 @@ th { font-size: .9rem; color: var(--muted); font-weight: 700; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+.receipt-actions { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.receipt-buttons { display: flex; gap: .5rem; }

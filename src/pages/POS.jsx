@@ -1,3 +1,4 @@
+import { downloadReceipt, printReceipt } from '../utils/receipt';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import api from '../api/client';
 import CloseShiftModal from '../components/CloseShiftModal.jsx';
@@ -155,10 +156,17 @@ function Register() {
 
         {message && <p className={message.type === 'error' ? 'alert' : 'notice'} role="alert">{message.text}</p>}
         {lastSale && (
-          <p className="notice" role="status">
-            Venta {lastSale.invoice_number} cobrada por {money(lastSale.total)} en {PAYMENTS[lastSale.payment_method].toLowerCase()}.
-          </p>
-        )}
+  <div className="notice receipt-actions" role="status">
+    <span>
+      Venta {lastSale.invoice_number} cobrada por {money(lastSale.total)} en{' '}
+      {PAYMENTS[lastSale.payment_method].toLowerCase()}.
+    </span>
+    <span className="receipt-buttons">
+      <button className="ghost" onClick={() => printReceipt(lastSale)}>Imprimir comprobante</button>
+      <button className="ghost" onClick={() => downloadReceipt(lastSale)}>Descargar PDF</button>
+    </span>
+  </div>
+)}
 
         {products.length === 0 ? (
           <p className="empty">No hay productos que coincidan con “{query}”.</p>
